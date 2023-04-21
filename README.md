@@ -2,7 +2,7 @@
 
 Objective of this projects is present a template python project with some helpers that help start a project in terms of configuration and following some best practices in a very fast way.
 
-Project structure organization:
+## Project structure organization:
 ```bash
 ├── .cicd
 │   ├── config
@@ -32,6 +32,41 @@ Hooks that are set on .cicd/config/pre-commit-config.yaml:
 - **interrogate:** check for coverage of your code about python function and class documentation, show a summary and can enforce a minimum coverage
 - **bandit:** security check for your code, if you are not using libraries/versions that has some indication of security problems
 
+In the same folder where we have pre-commit config you can also find the config files used for the helpers mentioned before.
+
+In the .cicd folder also we have the requirements.txt file used to setup a local environment with a fixed version of the libraries already mentioned and also pytest.
+
+We have yet tow another folders, one represent the project module and other represent the tests module, both with only \_\_init\_\_ file.
 
 
+## Makefile
+It´s an important file in the project template and deserve its section!
 
+This file hold some useful target helpers, and could and should be used to acellerate your development process when needs to validate your code. I will detail each one of them.
+
+```bash
+make setup-env
+```
+setup a local environment, creates a virtual environment on .venv folder in the project, install all requirements, and install pre-commit with the hooks
+
+```bash
+make style
+```
+execute isort and black in folders with python code, it ignores hidden folders (so .venv and .cicd forldes are rightfully ignored).
+
+```bash
+make lint
+```
+execute flake8, mypy and interrogate to check your code, same strategy followed by style with folders
+
+```bash
+make security-check
+```
+execute bandit to ensure your project is safe from use libs marked as unsafe.
+
+```bash
+make pytest
+```
+execute pytest over your folders, during execution create .artefact folder to store test results
+
+All this extra folders created to setup you local environment are already in .gitignore file, so dont worry of push them to your repository.
