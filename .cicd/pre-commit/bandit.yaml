@@ -1,0 +1,7 @@
+assert_used:
+  skips: ['*test*']
+
+# The issues below can be removed from the skipping list once the 'subprocess' module is not used anymore:
+# B404: import_subprocess - Consider possible security implications associated with the subprocess module.
+# B603: subprocess_without_shell_equals_true - subprocess call not using a system shell
+skips: [B404, B603]
