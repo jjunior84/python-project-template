@@ -19,7 +19,8 @@ Objective of this projects is present a template python project with some helper
 │   │   └── cicd.yml
 │   └── requirements.txt
 ├── python_project_template
-│   └── __init__.py
+│   ├── __init__.py
+│   └── dummy.py
 ├── tests
 │   ├── __init__.py
 │   └── test_dummy.py
