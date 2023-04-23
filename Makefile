@@ -25,7 +25,7 @@ security-check:
 test:
 	pytest \
 		--junit-xml=".artefacts/test-report.xml" --html=".artefacts/test-report.html" --self-contained-html \
-        --cov-report term-missing --cov=$(COV_DIRS) --cov-fail-under=0 \
+        --cov-report term-missing $(COV_DIRS) --cov-fail-under=0 \
         --log-cli-level=INFO --color=yes -x -v \
 
 
