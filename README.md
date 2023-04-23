@@ -4,7 +4,7 @@ Objective of this projects is present a template python project with some helper
 
 ## Project structure organization:
 ```bash
-├── .cicd
+├── .github
 │   ├── config
 │   │   ├── bandit.yaml
 │   │   ├── flake8.conf
@@ -24,7 +24,7 @@ Objective of this projects is present a template python project with some helper
 
 Project is using pre-commit, it´s library that´s comming with a client which your function is call git hooks before your commit be performed, and if one of this hook fails, your commit is not executed. Great right!
 
-Hooks that are set on .cicd/config/pre-commit-config.yaml:
+Hooks that are set on .github/config/pre-commit-config.yaml:
 - **isort:** sort is a Python utility / library to sort imports alphabetically, and automatically separated into sections and by type.
 - **black:** automatically format your code and make it compliance with PEP8 style coding convention
 - **flake8:** check if your code is compliance with PEP8, the difference to black is that balck format what is there but never will add nothing and flake8 check and warn you what is wrong and/or missing.
@@ -34,7 +34,7 @@ Hooks that are set on .cicd/config/pre-commit-config.yaml:
 
 In the same folder where we have pre-commit config you can also find the config files used for the helpers mentioned before.
 
-In the .cicd folder also we have the requirements.txt file used to setup a local environment with a fixed version of the libraries already mentioned and also pytest.
+In the .github folder also we have the requirements.txt file used to setup a local environment with a fixed version of the libraries already mentioned and also pytest.
 
 We have yet tow another folders, one represent the project module and other represent the tests module, both with only \_\_init\_\_ file.
 
@@ -52,7 +52,7 @@ setup a local environment, creates a virtual environment on .venv folder in the 
 ```bash
 make style
 ```
-execute isort and black in folders with python code, it ignores hidden folders (so .venv and .cicd forldes are rightfully ignored).
+execute isort and black in folders with python code, it ignores hidden folders (so .venv and .github folders are rightfully ignored).
 
 ```bash
 make lint
