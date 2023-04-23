@@ -26,13 +26,4 @@ test:
 	pytest \
 		--junit-xml=".artefacts/test-report.xml" --html=".artefacts/test-report.html" --self-contained-html \
         --cov-report term-missing $(COV_DIRS) --cov-fail-under=0 \
-        --log-cli-level=INFO --color=yes -x -v \
-
-
-    # Save plan to be applied
-    - name: Save Artifact
-      id: save-artifact
-      uses: actions/upload-artifact@v3
-      with:
-        name: ${{ steps.branch_check.outputs.BRANCH }}-${{ matrix.value }}-tfplan
-        path: ${{ env.TERRAFORM_DIRECTORY }}/${{ matrix.value }}-tfplan   
+        --log-cli-level=INFO --color=yes -x -v
