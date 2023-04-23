@@ -6,20 +6,21 @@ setup-env:
 	rm -rf ./.venv | true
 	python -m venv .venv
 	source ./.venv/bin/activate
-	pip install -r ./.cicd/requirements.txt
-	pre-commit install --config .cicd/config/pre-commit-config.yaml 
+	python -m pip install --upgrade pip
+	pip install -r ./.github/requirements.txt
+	pre-commit install --config .github/config/pre-commit-config.yaml 
 	
 style:
 	isort $(PYTHON_DIRS)
-	black --config=.cicd/pre-commit/pyproject.toml $(PYTHON_DIRS)
+	black --config=.github/config/pyproject.toml $(PYTHON_DIRS)
 
 lint:
-	flake8 --config=.cicd/pre-commit/flake8.conf $(PYTHON_DIRS)
-	mypy --config-file .cicd/pre-commit/mypy.ini $(PYTHON_DIRS)
+	flake8 --config=.github/config/flake8.conf $(PYTHON_DIRS)
+	mypy --config-file .github/config/mypy.ini $(PYTHON_DIRS)
 	interrogate -vv -i --fail-under=80
 
 security-check:
-	bandit -c .cicd/pre-commit/bandit.yaml -r $(PYTHON_DIRS)
+	bandit -c .github/config/bandit.yaml -r $(PYTHON_DIRS)
 
 test:
 	pytest \
@@ -27,3 +28,11 @@ test:
         --cov-report term-missing --cov=$(COV_DIRS) --cov-fail-under=0 \
         --log-cli-level=INFO --color=yes -x -v \
 
+
+    # Save plan to be applied
+    - name: Save Artifact
+      id: save-artifact
+      uses: actions/upload-artifact@v3
+      with:
+        name: ${{ steps.branch_check.outputs.BRANCH }}-${{ matrix.value }}-tfplan
+        path: ${{ env.TERRAFORM_DIRECTORY }}/${{ matrix.value }}-tfplan   
