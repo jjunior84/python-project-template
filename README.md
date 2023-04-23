@@ -2,6 +2,10 @@
 
 Objective of this projects is present a template python project with some helpers that help start a project in terms of configuration and following some best practices in a very fast way.
 
+## Pre-requisites:
+* Python 3.9 or greater (I'm using 3.10)
+* virtuvalenv lib
+
 ## Project structure organization:
 ```bash
 ├── .github
@@ -11,11 +15,14 @@ Objective of this projects is present a template python project with some helper
 │   │   ├── mypy.ini
 │   │   ├── pre-commit-config.yaml
 │   │   └── pyproject.toml
+│   ├── workflows
+│   │   └── cicd.yml
 │   └── requirements.txt
 ├── python_project_template
 │   └── __init__.py
 ├── tests
-│   └── __init__.py
+│   ├── __init__.py
+│   └── test_dummy.py
 ├── .gitignore
 ├── LICENSE
 ├── Makefile
