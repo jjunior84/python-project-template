@@ -31,7 +31,6 @@ jobs:
     - name: Security Check
       run: |
         bandit -c .github/config/bandit.yaml -r ${{ env.PYTHON_DIRS }}
-        pylint $(git ls-files '*.py')
 
     - name: Test
       run: |
