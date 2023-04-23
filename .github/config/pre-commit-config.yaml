@@ -7,18 +7,18 @@ repos:
     rev: 23.3.0
     hooks:
     - id: black
-      args: ["--config=", ".github/pre-commit/pyproject.toml"]
+      args: ["--config", ".github/config/pyproject.toml"]
 -   repo: https://github.com/PyCQA/flake8
     rev: 6.0.0
     hooks:
     - id: flake8
-      args: ["--config=", ".github/pre-commit/flake8.conf"]
+      args: ["--config", ".github/config/flake8.conf"]
 -   repo: https://github.com/pre-commit/mirrors-mypy
     rev: v1.2.0
     hooks:
     -   id: mypy
         verbose: true
-        entry: bash -c 'mypy --config-file .github/pre-commit/mypy.ini "$@" || true' --
+        entry: bash -c 'mypy --config-file .github/config/mypy.ini "$@" || true' --
 -   repo: https://github.com/econchick/interrogate
     rev: 1.5.0
     hooks:
@@ -28,4 +28,4 @@ repos:
     rev: 1.7.5
     hooks:
       - id: bandit
-        args: ["-c", ".github/pre-commit/bandit.yaml", "-r", ""] 
+        args: ["-c", ".github/config/bandit.yaml", "-r", ""] 
