@@ -4,7 +4,6 @@ on: [push]
 
 env:
   PYTHON_DIRS: $(find . -name "*.py" -type f -not -path  './.*' -exec dirname {} \; | cut -d "/" -f 2 | uniq)
-  COV_DIRS: $(echo ${{ env.PYTHON_DIRS }} | xargs -n1 -I{} echo "--cov={}")
 
 jobs:
   ci:
@@ -33,6 +32,8 @@ jobs:
         bandit -c .github/config/bandit.yaml -r ${{ env.PYTHON_DIRS }}
 
     - name: Test
+      env:
+        COV_DIRS: $(echo ${{ env.PYTHON_DIRS }} | xargs -n1 -I{} echo "--cov={}")
       run: |
         pytest \
           --junit-xml=".artefacts/test-report.xml" --html=".artefacts/test-report.html" --self-contained-html \
