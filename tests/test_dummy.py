@@ -1,6 +1,6 @@
 """Python Project Dummy Test Module."""
 
 
-def test_dummy() -> bool:
+def test_dummy() -> None:
     "Dummy test."
-    return True
+    assert True
