@@ -37,7 +37,7 @@ jobs:
       run: |
         pytest \
           --junit-xml=".artefacts/test-report.xml" --html=".artefacts/test-report.html" --self-contained-html \
-          --cov-report term-missing --cov=${{ env.COV_DIRS }} --cov-fail-under=0 \
+          --cov-report term-missing ${{ env.COV_DIRS }} --cov-fail-under=0 \
           --log-cli-level=INFO --color=yes -x -v \  
 
     - name: Save Artifact
